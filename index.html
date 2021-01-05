@@ -22,26 +22,26 @@
     <div class="search w-100 position-relative text-center justify-content-between py-5">
       <h1 class="text-center text-white position-relative pb-2">IP Address Tracker</h1>
       <div class="input position-relative d-flex justify-content-center align-items-center">
-        <input id="ipaddress" name="ipaddress" type="text" placeholder="Search for any IP address or domain" aria-label="ip address" title="ip address" class="col-3 rounded-start"/>
-        <div class="btnSearch position-relative col-1 bg-dark mr-2 rounded-end"></div>
+        <input id="ipaddress" name="ipaddress" type="text" placeholder="Search for any IP address or domain" aria-label="ip address" title="ip address" class="col-md-3 rounded-start"/>
+        <button class="btnSearch position-relative col-1 bg-dark mr-2 rounded-end" onclick="getInputValue();"></button>
       </div>
 
-      <section class="result position-absolute bg-white col-6 rounded">
+      <section class="result position-absolute bg-white col-md-7 rounded">
         <div class="result-container row position-relative d-flex justify-content-center align-items-center">
-          <div class="rc-ipaddress position-relative col-4 w-25 my-2 mx-auto border-end border-2 border-light">
+          <div class="rc-ipaddress position-relative col-md-4 w-25 my-2 mx-auto border-end border-2 border-light">
             <div class="text fw-bold text-uppercase text-black-50">IP Address</div>
             <div class="value">192.212.174.101</div>
           </div>
-          <div class="rc-location position-relative col-4 w-25 my-2 mx-auto border-end border-2 border-light">
+          <div class="rc-location position-relative col-md-4 w-25 my-2 mx-auto border-end border-2 border-light">
             <div class="text fw-bold text-uppercase text-black-50">Location</div>
             <div class="value">Brooklyn, NY 10001</div>
           </div>
-          <div class="rc-timezone position-relative col-4 w-25 my-2 mx-auto border-end border-2 border-light">
+          <div class="rc-timezone position-relative col-md-4 w-25 my-2 mx-auto border-end border-2 border-light">
             <div class="text fw-bold text-uppercase text-black-50">Timezone</div>
             <div class="value">UTC-05:00</div>
             <!-- add offset value dynamically using the API -->
           </div>
-          <div class="rc-isp position-relative col-4 w-25 my-2 mx-auto">
+          <div class="rc-isp position-relative col-md-4 w-25 my-2 mx-auto">
             <div class="text fw-bold text-uppercase text-black-50">ISP</div>
             <div class="value">SpaceX Starlink</div>
           </div>
@@ -51,8 +51,8 @@
   </header>
 
   <main class="position-relative w-100 h-75">
-    <div id="mapid" class=""></div>
-    <section id="map" class="map position-relative"></section>
+    <section id="mapid" class="map position-relative"></section>
+    <!--<div id="map"></div>-->
   </main>
 
   <footer class="d-flex col-6 mx-auto justify-content-end flex-column mt-5">
@@ -61,5 +61,8 @@
       Coded by <a href="#">Marc Bellido</a>.
     </div>
   </footer>
+
+  <!-- <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCfXx3farRYqt51zanUnCQzshOMkejQqY4&callback=initMap&libraries=&v=weekly" defer></script> -->
 </body>
 </html>

@@ -1,6 +1,28 @@
-//IPIFY API KEY = at_0iDoj4504blzc9hchqt0E6ogRuCgC
-//https://geo.ipify.org/api/v1?apiKey=at_0iDoj4504blzc9hchqt0E6ogRuCgC&ipAddress=8.8.8.8
+/*
+----Ipify----
+https://www.ipify.org
+Api key = at_0iDoj4504blzc9hchqt0E6ogRuCgC
+https://geo.ipify.org/api/v1?apiKey=at_0iDoj4504blzc9hchqt0E6ogRuCgC&ipAddress=8.8.8.8
 
+----MAP API----
+https://leafletjs.com
+https://developers.google.com/maps/api-key-best-practices
+https://docs.mapbox.com/help/troubleshooting/how-to-use-mapbox-securely/
+*/
+
+/**
+ * - coger ip introducida
+ * - localizar en el mapa
+ * - sustituir valores: ip address, location, timezone, isp
+ */
+
+let button = document.querySelector(".btnSearch");
+
+function getInputValue(){
+    let ipInput = document.querySelector("#ipaddress").value;
+    
+    console.log(ipInput);
+}
 
 /*(function () {
     const apiurl = "https://geo.ipify.org/api/v1?apiKey=at_0iDoj4504blzc9hchqt0E6ogRuCgC";
@@ -63,3 +85,16 @@
 
     window.onload = initialize;
 })()*/
+
+/*Google 
+Api key = AIzaSyCfXx3farRYqt51zanUnCQzshOMkejQqY4
+
+let map;
+
+function initMap() {
+    map = new google.maps.Map(document.getElementById("map"), {
+        center: { lat: -34.397, lng: 150.644 },
+        zoom: 8,
+    });
+}*/
+
