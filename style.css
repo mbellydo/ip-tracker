@@ -13,13 +13,22 @@
 }
 
 .result{
-    bottom: -5rem;
+    bottom: -12rem;
     left: 0%;
-    margin-left: 1%;
-    margin-right: 1%;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+.result-container div{
+    width: 100% !important;
+}
+.result-container .text{
+    font-size: 12px;
 }
 
-#map, #mapid{height: 500px;}
+#map, #mapid{
+    height: 600px; 
+    z-index: -1;
+}
 
 /*---FOOTER---*/
 .attribution{
@@ -32,7 +41,10 @@
 
 @media (min-width: 768px){
     .result{ 
-        bottom: -3rem;
+        bottom: -3.5rem;
         left: 20%;
+    }
+    .result-container>div{
+        width: 25% !important;
     }
 }

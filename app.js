@@ -1,100 +1,90 @@
 /*
-----Ipify----
-https://www.ipify.org
-Api key = at_0iDoj4504blzc9hchqt0E6ogRuCgC
-https://geo.ipify.org/api/v1?apiKey=at_0iDoj4504blzc9hchqt0E6ogRuCgC&ipAddress=8.8.8.8
+    ----Ipify----
+    https://www.ipify.org
+    https://geo.ipify.org/docs
+    Api key = at_0iDoj4504blzc9hchqt0E6ogRuCgC
+    https://geo.ipify.org/api/v1?apiKey=at_0iDoj4504blzc9hchqt0E6ogRuCgC&ipAddress=8.8.8.8
+    http://www.cualesmiip.com
+    ej.: 192.212.174.101 / 188.79.142.43
 
-----MAP API----
-https://leafletjs.com
-https://developers.google.com/maps/api-key-best-practices
-https://docs.mapbox.com/help/troubleshooting/how-to-use-mapbox-securely/
+    ----MAP API----
+    ---Leaflet---
+    https://leafletjs.com
+    https://leafletjs.com/examples/quick-start/
+    https://leafletjs.com/reference-1.7.1.html
+
+    https://developers.google.com/maps/api-key-best-practices
+    https://docs.mapbox.com/help/troubleshooting/how-to-use-mapbox-securely/
 */
-
-/**
- * - coger ip introducida
- * - localizar en el mapa
- * - sustituir valores: ip address, location, timezone, isp
- */
 
 let button = document.querySelector(".btnSearch");
 
+const ipValue = document.querySelector(".valueIp");
+const countryValue = document.querySelector(".valueCountry");
+const utcValue = document.querySelector(".valueUtc");
+const ispValue = document.querySelector(".valueIsp");
+
+const mapDiv = document.querySelector("#map");
+
 function getInputValue(){
     let ipInput = document.querySelector("#ipaddress").value;
-    
-    console.log(ipInput);
+    const key = 'at_0iDoj4504blzc9hchqt0E6ogRuCgC';
+    const url = 'https://geo.ipify.org/api/v1?apiKey='+key+'&ipAddress=';
+
+    urlUpdated = url + ipInput
+
+    //console.log(ipInput);
+    //console.log(urlUpdated);
+
+    fetch(urlUpdated)
+        .then(response => response.json())
+        .then(response => updateValues(response))
+        .then(response => createMap(response))
+        .catch(error => console.log(error));
 }
 
-/*(function () {
-    const apiurl = "https://geo.ipify.org/api/v1?apiKey=at_0iDoj4504blzc9hchqt0E6ogRuCgC";
-    let mymap = undefined;
+function updateValues(response){
+    ipValue.innerHTML = response.ip;
+    //console.log(response.ip);
+    
+    countryValue.innerHTML = response.location.country+", "+response.location.region+", "+response.location.city+", "+response.location.postalCode;
+    //console.log(response.location.country+", "+response.location.region+", "+response.location.city+", "+response.location.postalCode);
+    
+    utcValue.innerHTML = "UTC"+response.location.timezone;
+    //console.log("UTC"+response.location.timezone);
 
-    function Filldata(data) {
-        document.querySelector(".rc-ipaddress .value").innerHTML = data.ip;
-        document.querySelector(".rc-location .value").innerHTML = `${data.location.city}, ${data.location.region} ${data.location.postalCode}`;
-        document.querySelector(".rc-timezone .value").innerHTML = `UTC${data.location.timezone}`;
-        document.querySelector(".rc-isp .value").innerHTML = data.isp;
+    ispValue.innerHTML = response.isp;
+    //console.log(response.isp);
 
-        let coord = [data.location.lat, data.location.lng];
+    createMap(response)
+}
 
-        let mylocationicon = L.icon({
-            iconUrl: 'images/icon-location.svg',
-            iconSize: [46,56]
-        });
+function createMap(response) {
+    //console.log("lat: " + response.location.lat + ", lng: " + response.location.lng)
+    let map = L.map('map').setView([response.location.lat, response.location.lng], 16);
+    let myIcon = L.icon({
+        iconUrl: '/images/icon-location.svg',
+        iconSize: [28,30],
+        iconAnchor: [17, 85],
+        popupAnchor: [-3, -76]
+    });
+    
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
 
-        mymap.setView(coord, 13);
+    L.marker([response.location.lat, response.location.lng], {icon: myIcon}).addTo(map)
+        .bindPopup('Here I Am!')
+        .openPopup();
 
-        L.marker(coord, { icon: mylocationicon}).addTo(mymap);
-    }
-
-    function SearchIp(value) {
-        let request = `${apiurl}${process.env.IPIFY_API_KEY}&ipAddress=${value}`;
-
-        fetch(request).then(response => response.json()).then(respo => Filldata(respo));
-    }
-
-    function Search() {
-        let ipvalue = document.getElementById("ipaddress").value;
-
-        document.getElementById("ipaddress").value = "";
-
-        SearchIp(ipvalue);
-    }
-
-    function initialize() {
-        document.getElementById("ipaddress").addEventListener("keypress", (e) => {
-            if (e.key === "Enter") {
-               Search();
-            }
-        });
-
-        document.querySelector(".btnSearch").addEventListener("click", () => Search());
-
-        mymap = L.map('map').setView([51.505, -0.09], 13);
-
+    /*
         L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
             attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
             maxZoom: 18,
             id: 'mapbox/streets-v11',
             tileSize: 512,
             zoomOffset: -1,
-            accessToken: process.env.MAP_BOX_ACCESS_TOKEN
+            accessToken: 'your.mapbox.access.token'
         }).addTo(mymap);
-
-        // SearchIp('192.212.174.101');
-    }
-
-    window.onload = initialize;
-})()*/
-
-/*Google 
-Api key = AIzaSyCfXx3farRYqt51zanUnCQzshOMkejQqY4
-
-let map;
-
-function initMap() {
-    map = new google.maps.Map(document.getElementById("map"), {
-        center: { lat: -34.397, lng: 150.644 },
-        zoom: 8,
-    });
-}*/
-
+    */
+}

@@ -6,17 +6,17 @@
 
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
   
+  <!--STYLES-->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-
   <link rel="stylesheet" href="style.css">
 
+  <!--LEAFLETJS (MAP API)-->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin=""/>
   <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
 
-  <script type="text/javascript" src="app.js"></script>
-  
   <title>IP Address Tracker | by Marc Bellido</title>
 </head>
+
 <body class="w-100 h-100 px-0 container-fluid d-flex-column">
   <header>
     <div class="search w-100 position-relative text-center justify-content-between py-5">
@@ -26,24 +26,27 @@
         <button class="btnSearch position-relative col-1 bg-dark mr-2 rounded-end" onclick="getInputValue();"></button>
       </div>
 
-      <section class="result position-absolute bg-white col-md-7 rounded">
-        <div class="result-container row position-relative d-flex justify-content-center align-items-center">
-          <div class="rc-ipaddress position-relative col-md-4 w-25 my-2 mx-auto border-end border-2 border-light">
-            <div class="text fw-bold text-uppercase text-black-50">IP Address</div>
-            <div class="value">192.212.174.101</div>
+      <section class="result position-absolute bg-white col-md-7 rounded mx-4">
+        <div class="result-container row position-relative d-flex justify-content-center align-items-center mx-2 py-md-2">
+          <div class="rc-ipaddress position-relative col-md-4 col-1 w-25 my-2 mx-auto border-end border-2 border-light">
+            <div class="text fw-bold text-uppercase text-black-50 mx-auto fw-bold">IP Address</div>
+            <div class="valueIp mx-auto fw-bold">192.212.174.101</div>
           </div>
-          <div class="rc-location position-relative col-md-4 w-25 my-2 mx-auto border-end border-2 border-light">
-            <div class="text fw-bold text-uppercase text-black-50">Location</div>
-            <div class="value">Brooklyn, NY 10001</div>
+
+          <div class="rc-location position-relative col-md-4 col-1 w-25 my-2 mx-auto border-end border-2 border-light">
+            <div class="text fw-bold text-uppercase text-black-50 mx-auto fw-bold">Location</div>
+            <div class="valueCountry mx-auto fw-bold">Brooklyn, NY 10001</div>
           </div>
-          <div class="rc-timezone position-relative col-md-4 w-25 my-2 mx-auto border-end border-2 border-light">
-            <div class="text fw-bold text-uppercase text-black-50">Timezone</div>
-            <div class="value">UTC-05:00</div>
+
+          <div class="rc-timezone position-relative col-md-4 col-1 w-25 my-2 mx-auto border-end border-2 border-light">
+            <div class="text fw-bold text-uppercase text-black-50 mx-auto fw-bold">Timezone</div>
+            <div class="valueUtc mx-auto fw-bold">UTC-05:00</div>
             <!-- add offset value dynamically using the API -->
           </div>
-          <div class="rc-isp position-relative col-md-4 w-25 my-2 mx-auto">
-            <div class="text fw-bold text-uppercase text-black-50">ISP</div>
-            <div class="value">SpaceX Starlink</div>
+
+          <div class="rc-isp position-relative col-md-4 col-1 w-25 my-2 mx-auto">
+            <div class="text fw-bold text-uppercase text-black-50 mx-auto fw-bold">ISP</div>
+            <div class="valueIsp mx-auto fw-bold">SpaceX Starlink</div>
           </div>
         </div>
       </section>
@@ -51,8 +54,7 @@
   </header>
 
   <main class="position-relative w-100 h-75">
-    <section id="mapid" class="map position-relative"></section>
-    <!--<div id="map"></div>-->
+    <div id="map"></div>
   </main>
 
   <footer class="d-flex col-6 mx-auto justify-content-end flex-column mt-5">
@@ -62,7 +64,6 @@
     </div>
   </footer>
 
-  <!-- <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCfXx3farRYqt51zanUnCQzshOMkejQqY4&callback=initMap&libraries=&v=weekly" defer></script> -->
+  <script type="text/javascript" src="app.js"></script>
 </body>
 </html>
