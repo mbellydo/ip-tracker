@@ -2,10 +2,9 @@
     ----Ipify----
     https://www.ipify.org
     https://geo.ipify.org/docs
-    Api key = at_0iDoj4504blzc9hchqt0E6ogRuCgC
     https://geo.ipify.org/api/v1?apiKey=at_0iDoj4504blzc9hchqt0E6ogRuCgC&ipAddress=8.8.8.8
     http://www.cualesmiip.com
-    ej.: 192.212.174.101 / 188.79.142.43
+    ej.: 192.212.174.101
 
     ----MAP API----
     ---Leaflet---
@@ -28,7 +27,7 @@ const mapDiv = document.querySelector("#map");
 
 function getInputValue(){
     let ipInput = document.querySelector("#ipaddress").value;
-    const key = 'at_0iDoj4504blzc9hchqt0E6ogRuCgC';
+    const key = process.env.api_key;
     const url = 'https://geo.ipify.org/api/v1?apiKey='+key+'&ipAddress=';
 
     urlUpdated = url + ipInput
